@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lukadde FC | Contact</title>
+    <link rel="stylesheet" href="krazy.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-text">LUKADDE <span>FC</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-title-container">
+            <h1>Contact Lukadde FC</h1>
+        </div>
+        
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <h2>Talk To Us</h2>
+            <p><strong>Phone:</strong> 0754444415</p>
+            <p><strong>TikTok:</strong> @lukadde_fc</p>
+            <p><strong>Location:</strong> Lukadde, Kampala</p>
+            <p><strong>Email:</strong> riykinnsubuga42@gmail.com</p>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 10px;">Join The Club</h2>
+            <p style="text-align: center; margin-bottom: 20px; font-size: 0.9rem;">Do you want to play for Lukadde FC?</p>
+            
+            <form id="joinForm">
+                <div class="form-group">
+                    <label for="name">NAME:</label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">EMAIL:</label>
+                    <input type="email" id="email" required placeholder="Enter your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="position">POSITION:</label>
+                    <select id="position" required>
+                        <option value="Goalkeeper">Goalkeeper</option>
+                        <option value="Defender">Defender</option>
+                        <option value="Midfielder">Midfielder</option>
+                        <option value="Striker">Striker</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="shirt">SHIRT NUMBER:</label>
+                    <input type="number" id="shirt" required placeholder="e.g. 10">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">MESSAGE:</label>
+                    <textarea id="message" rows="4" required placeholder="Tell us a bit about your football experience..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Lukadde FC. <i>"We struggle together"</i></p>
+    </footer>
+
+    <!-- JavaScript to handle the form submission -->
+    <script>
+        document.getElementById('joinForm').addEventListener('submit', function(event) {
+            // Stop the page from refreshing
+            event.preventDefault();
+
+            // Get the values the user typed in
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const position = document.getElementById('position').value;
+            const shirt = document.getElementById('shirt').value;
+            const message = document.getElementById('message').value;
+
+            // Your WhatsApp number (Uganda country code +256, removed the leading 0)
+            const whatsappNumber = "256754444415"; 
+
+            // Format the message for WhatsApp (%0A means "new line")
+            const whatsappText = `*NEW PLAYER APPLICATION*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Position:* ${position}%0A*Shirt Number:* ${shirt}%0A*Message:* ${message}`;
+
+            // Open WhatsApp with the pre-filled message
+            window.open(`https://wa.me/${whatsappNumber}?text=${whatsappText}`, '_blank');
+
+            // Prepare email link as a backup option
+            const emailSubject = `Player Application: ${name}`;
+            const emailBody = `Name: ${name}%0AEmail: ${email}%0APosition: ${position}%0AShirt Number: ${shirt}%0AMessage: ${message}`;
+            
+            // Wait 1.5 seconds, then ask if they also want to send an email
+            setTimeout(() => {
+                if(confirm("Your WhatsApp is opening to send the application. Would you also like to send this via Email?")) {
+                    window.location.href = `mailto:riykinnsubuga42@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                }
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
